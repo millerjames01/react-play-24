@@ -1,0 +1,16 @@
+{
+  "name": "react-play-24",
+  "version": "0.0.1",
+  "description": "A demo project built with React and Express to allow users to play the classic number game 24.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jim Miller",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
+    "express": "^4.17.2"
+  }
+}
