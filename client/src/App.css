@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   color: white;
+  font-family: 'VT323', monospace;
 }
 
 .Nav {
@@ -35,16 +36,55 @@
   font-size: 50px;
 }
 
-.ResultArea {
+.DisplayArea {
   position: absolute;
   top: 60px;
   bottom: 200px;
   left: 0px;
   right: 0px;
+  padding: 0px 50px;
   background: #414c50;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  font-size: 72px;
+  row-gap: 50px;
+}
+
+.DisplayArea-expression {
+  width: 90%;
+  text-align: center;
+}
+
+.DisplayArea-expression .Gray {
+  color: #aaa;
+}
+
+.DisplayArea-result {
+  width: 200px;
+  text-align: center;
+  height: 100px;
+  border: 2px dotted white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.DisplayArea-message {
+  width: 70%;
+  text-align:center;
+}
+
+@media (max-width: 480px) {
+  .DisplayArea {
+    font-size: 50px;
+  }
+
+  .DisplayArea-result {
+    width: 25%;
+    height: 60px;
+  }
 }
 
 .Controls {
@@ -52,30 +92,22 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 200px;
+  height: 285px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #192428;
 }
 
-.Controls-numberRow {
+.Controls-row {
   width: 800px;
-  max-width: 800px;
+  max-width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 10px 0px;
 }
 
-.Controls-operatorRow {
-  width: 800px;
-  max-width: 800px;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-}
-
-.NumberButton, .OperatorButton {
+.NumberButton, .OperatorButton, .ResetButton, .BackspaceButton {
   height: 50px;
   cursor: pointer;
   border: 2px solid black;
@@ -86,7 +118,7 @@
   color: white;
 }
 
-.NumberButton {
+.NumberButton, .ResetButton, .BackspaceButton {
   width: 22%;
 }
 
