@@ -36,6 +36,17 @@
   font-size: 50px;
 }
 
+.NewPuzzleButton {
+  width: 300px;
+}
+
+.Game > .NewPuzzleButton {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
 .DisplayArea {
   position: absolute;
   top: 60px;
@@ -78,12 +89,18 @@
 
 @media (max-width: 480px) {
   .DisplayArea {
-    font-size: 50px;
+    font-size: 36px;
   }
 
   .DisplayArea-result {
     width: 25%;
-    height: 60px;
+    height: 42px;
+  }
+
+  .Game > .NewPuzzleButton {
+    font-size: 24px;
+    width: 150px;
+    height: 30px;
   }
 }
 
@@ -99,6 +116,21 @@
   background: #192428;
 }
 
+.WinMessage {
+  padding: 20px;
+}
+
+.WinMessage > .NewPuzzleButton {
+  margin-top: 20px;
+}
+
+.Controls-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .Controls-row {
   width: 800px;
   max-width: 100%;
@@ -107,7 +139,7 @@
   padding: 10px 0px;
 }
 
-.NumberButton, .OperatorButton, .ResetButton, .BackspaceButton {
+.NumberButton, .OperatorButton, .ResetButton, .BackspaceButton, .NewPuzzleButton {
   height: 50px;
   cursor: pointer;
   border: 2px solid black;
