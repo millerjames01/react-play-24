@@ -1,6 +1,6 @@
 # Play 24
 
-![Play 24 Screenshot]()
+![Play 24 Screenshot](https://user-images.githubusercontent.com/3317059/151034122-79d67f8a-20d7-4b77-92b1-70467e271955.png)
 
 This is a demo project built to practice using the React framework with an Express server.
 
@@ -35,7 +35,7 @@ They communicate back and forth using cross-origin resource sharing.
 
 ## Tests
 
-On there way!
+On their way!
 
 ## Ideas for Future Improvement
 
