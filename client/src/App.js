@@ -33,6 +33,7 @@ class Game extends React.Component {
     this.reset = this.reset.bind(this);
     this.backspace = this.backspace.bind(this);
     this.newPuzzle = this.newPuzzle.bind(this);
+    this.enclose = this.enclose.bind(this);
   }
 
   async componentDidMount() {
@@ -54,6 +55,12 @@ class Game extends React.Component {
   clickOperator(operator) {
     this.setState((state) => ({
       expression: state.expression + operator + ' '
+    }));
+  }
+
+  enclose() {
+    this.setState((state) => ({
+      expression: '( ' + state.expression + ') '
     }));
   }
 
@@ -103,7 +110,7 @@ class Game extends React.Component {
   }
 
   getResult() {
-    var expr = this.state.expression.replace('×', '*').replace('÷', '/');
+    var expr = this.state.expression.replaceAll('×', '*').replaceAll('÷', '/');
     var result = evalCatchErrors(expr);
 
     if(!isNumeric(result)) {
@@ -123,7 +130,7 @@ class Game extends React.Component {
         <NewPuzzleButton newPuzzle={this.newPuzzle} message={"New Puzzle"}/>
         <DisplayArea result={this.getResult()} expression={this.state.expression} />
         <Controls hasWon={this.hasWon()} numbers={this.state.numbers} usedNumbers={this.state.usedNumbers} newPuzzle={this.newPuzzle}
-          clickNumber={this.clickNumber} clickOperator={this.clickOperator} reset={this.reset} backspace={this.backspace} />
+          clickNumber={this.clickNumber} clickOperator={this.clickOperator} reset={this.reset} backspace={this.backspace} enclose={this.enclose} />
       </div>
     );
   }
@@ -162,13 +169,18 @@ function Controls(props) {
             })}
           </div>
           <div className="Controls-row">
-            {['(', ')', '×', '+', '-', '÷'].map((operator) => {
+            {['+', '-', '×', '÷'].map((operator) => {
               return <OperatorButton key={operator} operator={operator} handleClick={() => {props.clickOperator(operator)}} />;
             })}
           </div>
           <div className="Controls-row">
-            <ResetButton  handleClick={() => {props.reset()}}/>
-            <BackspaceButton handleClick={() => {props.backspace()}}/>
+            <OperatorButton key={'('} operator={'('} handleClick={() => props.clickOperator('(')} />
+            <EncloseButton handleClick={() => props.enclose()} />
+            <OperatorButton key={')'} operator={')'} handleClick={() => props.clickOperator(')')} />
+          </div>
+          <div className="Controls-row">
+            <ResetButton  handleClick={props.reset}/>
+            <BackspaceButton handleClick={props.backspace} />
           </div>
         </div>
       )}
@@ -195,6 +207,10 @@ function NumberButton(props) {
 
 function OperatorButton(props) {
   return <div className="OperatorButton" onClick={props.handleClick}>{props.operator}</div>;
+}
+
+function EncloseButton(props) {
+  return <div className="EncloseButton" onClick={props.handleClick}>(...)</div>;
 }
 
 function ResetButton(props) {
